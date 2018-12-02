@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ucare.Entidades\Ucare.Entidades.csproj" />
+    <ProjectReference Include="..\Ucare.Entidades\Ucare3.0.Entidades.csproj" />
   </ItemGroup>
 
 </Project>

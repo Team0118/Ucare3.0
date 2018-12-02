@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucare.Web", "Ucare.Web\Ucare.Web.csproj", "{5DEB3B40-B952-48E6-A718-61A1C8C44654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucare3.0.Web", "Ucare.Web\Ucare3.0.Web.csproj", "{5DEB3B40-B952-48E6-A718-61A1C8C44654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucare.Datos", "Ucare.Datos\Ucare.Datos.csproj", "{C50CD264-F97C-42C6-82D8-6A2596C8193E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucare3.0.Datos", "Ucare.Datos\Ucare3.0.Datos.csproj", "{C50CD264-F97C-42C6-82D8-6A2596C8193E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucare.Entidades", "Ucare.Entidades\Ucare.Entidades.csproj", "{3E2998C3-2FF5-427F-8653-61535DA8E3FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucare3.0.Entidades", "Ucare.Entidades\Ucare3.0.Entidades.csproj", "{3E2998C3-2FF5-427F-8653-61535DA8E3FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
