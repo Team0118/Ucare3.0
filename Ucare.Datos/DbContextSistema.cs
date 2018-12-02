@@ -7,7 +7,7 @@ using Ucare.Entidades.Almacen;
 
 namespace Ucare.Datos
 {
-    class DbContextSistema : DbContext
+   public class DbContextSistema : DbContext
     {
 
         public DbSet<Categoria> Categorias { get; set; }
