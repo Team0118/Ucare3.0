@@ -26,6 +26,9 @@ namespace Ucare.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<DbContextSistema>(options =>
+
+            options.UseSqlServer(Configuration.GetConnectionString("Conexion")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -14,8 +14,12 @@ namespace Ucare.Datos.Mapping.Almacen
 
             builder.ToTable("categoria")
                 .HasKey(c => c.idcategoria);
+
+            /*
             builder.Property(c => c.nombre)
                 .HasMaxLength(50);
+            builder.Property(c => c.descripcion)
+                .HasMaxLength(256);*/
 
         }
     }
