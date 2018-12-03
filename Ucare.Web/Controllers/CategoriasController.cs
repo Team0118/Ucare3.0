@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Ucare.Datos;
 using Ucare.Entidades.Almacen;
+using Ucare.Web.Models.Almacen.Categoria;
 
 namespace Ucare.Web.Controllers
 {
@@ -21,21 +22,27 @@ namespace Ucare.Web.Controllers
             _context = context;
         }
 
-        // GET: api/Categorias
-        [HttpGet]
-        public IEnumerable<Categoria> GetCategorias()
+        // GET: api/Categorias/Listar
+        [HttpGet("[action]")]
+        public async Task <IEnumerable<CategoriaViewModel>> Listar()
         {
-            return _context.Categorias;
+
+            var categoria = await _context.Categorias.ToListAsync();
+
+            return categoria.Select(c => new CategoriaViewModel
+            {
+                idcategoria = c.idcategoria,
+                nombre = c.nombre,
+                descripcion = c.descripcion,
+                estado = c.estado
+            });
+
         }
 
-        // GET: api/Categorias/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCategoria([FromRoute] int id)
+        // GET: api/Categorias/Mostrar
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> Mostrar([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             var categoria = await _context.Categorias.FindAsync(id);
 
@@ -44,24 +51,40 @@ namespace Ucare.Web.Controllers
                 return NotFound();
             }
 
-            return Ok(categoria);
+            return Ok(new CategoriaViewModel {
+                idcategoria =categoria.idcategoria,
+                nombre = categoria.nombre,
+                descripcion = categoria.descripcion,
+                estado = categoria.estado
+
+            });
         }
 
-        // PUT: api/Categorias/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategoria([FromRoute] int id, [FromBody] Categoria categoria)
+        // PUT: api/Categorias/Actualizar
+        [HttpPut("[action]")]
+        public async Task<IActionResult> Actualizar([FromBody] ActualizarViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != categoria.idcategoria)
+            if (model.idcategoria < 0 )
             {
                 return BadRequest();
             }
 
-            _context.Entry(categoria).State = EntityState.Modified;
+            var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.idcategoria == model.idcategoria);
+
+            if (model.idcategoria == null) {
+
+                return NotFound();
+
+            }
+
+            categoria.nombre = model.nombre;
+            categoria.descripcion = model.descripcion;
+            
 
             try
             {
@@ -69,32 +92,44 @@ namespace Ucare.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoriaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest();
             }
 
-            return NoContent();
+            return Ok();
         }
 
-        // POST: api/Categorias
-        [HttpPost]
-        public async Task<IActionResult> PostCategoria([FromBody] Categoria categoria)
+        // POST: api/Categorias/Crear
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Crear([FromBody] CrearViewModel model )
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            Categoria categoria = new Categoria
+            {
+
+                nombre = model.nombre,
+                descripcion = model.descripcion,
+                estado = true
+
+            };
 
             _context.Categorias.Add(categoria);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategoria", new { id = categoria.idcategoria }, categoria);
+            try
+            {
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception e) {
+
+                return BadRequest();
+
+            }
+
+
+            return Ok();
         }
 
         // DELETE: api/Categorias/5
