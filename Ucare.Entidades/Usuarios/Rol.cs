@@ -14,5 +14,7 @@ namespace Ucare.Entidades.Usuarios
         [StringLength(256)]
         public string descripcion { get; set; }
         public bool estado { get; set; }
+
+        public ICollection<Usuario> usuarios { get; set; }
     }
 }

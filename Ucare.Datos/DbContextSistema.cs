@@ -14,6 +14,7 @@ namespace Ucare.Datos
 
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Rol> Roles { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         public DbContextSistema(DbContextOptions<DbContextSistema> options) : base(options) {
 
@@ -24,6 +25,7 @@ namespace Ucare.Datos
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new CategoriaMap());
             modelBuilder.ApplyConfiguration(new RolMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMap());
 
         }
 
