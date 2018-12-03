@@ -31,6 +31,18 @@ namespace Ucare.Web
             services.AddDbContext<DbContextSistema>(options =>
 
             options.UseSqlServer(Configuration.GetConnectionString("Conexion")));
+
+            services.AddCors(options => {
+
+                options.AddPolicy("Todos", builder => 
+                  builder.WithOrigins("*")
+                 .WithHeaders("*")
+                 .WithMethods("*"));
+
+            });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +59,7 @@ namespace Ucare.Web
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors("Todos");
         }
     }
 }
