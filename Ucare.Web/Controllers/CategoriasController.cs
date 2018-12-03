@@ -27,7 +27,7 @@ namespace Ucare.Web.Controllers
         public async Task <IEnumerable<CategoriaViewModel>> Listar()
         {
 
-            var categoria = await _context.Categorias.ToListAsync();
+             var categoria = await _context.Categorias.ToListAsync();
 
             return categoria.Select(c => new CategoriaViewModel
             {

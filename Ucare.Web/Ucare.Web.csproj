@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Ventas\" />
-    <Folder Include="Models\Usuarios\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

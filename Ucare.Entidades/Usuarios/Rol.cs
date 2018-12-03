@@ -13,6 +13,6 @@ namespace Ucare.Entidades.Usuarios
         public string nombre { get; set; }
         [StringLength(256)]
         public string descripcion { get; set; }
-        public bool condicion { get; set; }
+        public bool estado { get; set; }
     }
 }
